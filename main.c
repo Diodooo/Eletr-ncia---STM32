@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 4422 Diogo da Silveira e Pedro Luís Ourique dos Santos Francisco
+  * Copyright (c) 4422 Diogo da Silveira e Pedro LuÃ­s Ourique dos Santos Francisco
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -15,10 +15,10 @@
   *
   ******************************************************************************
   */
-// Código desenvolvido para a matéria de Sistemas Microprocessados do curso de Eletrônica
-// O mesmo busca integrar os valores de centimetragem, sensor de ré e direção do pisca em
-//um display NOKIA.
-/* Periféricos Utilizados:
+// CÃ³digo desenvolvido para a matÃ©ria de Sistemas Microprocessados do curso de EletrÃ´nica
+// O mesmo busca integrar os valores de centimetragem, sensor de rÃ© e direÃ§Ã£o do pisca em
+//um display NOKIA..
+/* PerifÃ©ricos Utilizados:
  * - PWM
  * - IC
  * - OC
@@ -27,7 +27,7 @@
  * - ENCODER
  * Extras:
  * - Controle de Sensor HC - SR04
- * - Utilização do Display NOKIA
+ * - UtilizaÃ§Ã£o do Display NOKIA
  */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
@@ -40,8 +40,8 @@
 /* USER CODE BEGIN Includes */
 #include <string.h>
 #include <stdio.h>
-#include "nokia5110_LCD.h" //BIBLIOTECA NOKIA - Disponível em: https://github.com/Zeldax64/Nokia-LCD5110-HAL (Todos os creditos relacionados as funções NOKIA
-						   //					são destinados ao autor Caio Rodrigo)
+#include "nokia5110_LCD.h" //BIBLIOTECA NOKIA - DisponÃ­vel em: https://github.com/Zeldax64/Nokia-LCD5110-HAL (Todos os creditos relacionados as funÃ§Ãµes NOKIA
+						   //					sÃ£o destinados ao autor Caio Rodrigo)
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -78,15 +78,15 @@ char dir[20] = {"Direita"};                                                //ENC
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-int debounce (int chave, long estado) 								    //FUNÇÃO PARA LEITURA DA TROCA DE ESTADO
-{                                   									//É CAPAZ DE LER ALTERAÇÕES POSITIVAS E NEGATIVAS NO CNT DO ENCODER
+int debounce (int chave, long estado) 								    //FUNÃ‡ÃƒO PARA LEITURA DA TROCA DE ESTADO
+{                                   									//Ã‰ CAPAZ DE LER ALTERAÃ‡Ã•ES POSITIVAS E NEGATIVAS NO CNT DO ENCODER
     static long estados[1] = {0}; 										//VETOR DE 1 "SLOT"
     if (estados[chave] == estado) 										//ESTADOS ANTERIOR E ATUAL IGUAIS?
     {
-        return 0;														//FUNÇÃO = FALSA
+        return 0;														//FUNÃ‡ÃƒO = FALSA
     }
-    estados[chave] = estado;											//SE SÃO DIFERENTES IGUALA O ESTADO ATUAL AO ANTETERIOR
-    return 1;															//FUNÇÃO = TRUE
+    estados[chave] = estado;											//SE SÃƒO DIFERENTES IGUALA O ESTADO ATUAL AO ANTETERIOR
+    return 1;															//FUNÃ‡ÃƒO = TRUE
 }
 
 /* USER CODE END PFP */
@@ -152,20 +152,20 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  count = htim2.Instance->CNT;								//VARI�?VEL DE TESTE
-	  direcao =! (__HAL_TIM_IS_TIM_COUNTING_DOWN(&htim2));		//DIREÇÃO DO ENCODER
-	  distancia = (1.9*(rot* 4.5))/360;							//C�?LCULO DA CENTIMETRAGEM
-	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	/* pi * 0,6cm =  1,9cm (Circunferência)  |
+	  count = htim2.Instance->CNT;								//VARIÃ?VEL DE TESTE
+	  direcao =! (__HAL_TIM_IS_TIM_COUNTING_DOWN(&htim2));		//DIREÃ‡ÃƒO DO ENCODER
+	  distancia = (1.9*(rot* 4.5))/360;							//CÃ?LCULO DA CENTIMETRAGEM
+	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	/* pi * 0,6cm =  1,9cm (CircunferÃªncia)  |
 	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	|  										 |
-	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	|  80 pulsos -> 1 volta -> 360º -> 1,9cm |
+	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	|  80 pulsos -> 1 volta -> 360Âº -> 1,9cm |
 	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	|  										 |
-	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	|  80 - 360º							 |
-	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	|  1  -  x    ->    x = 4,5º 	         |
+	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	|  80 - 360Âº							 |
+	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	|  1  -  x    ->    x = 4,5Âº 	         |
 	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	|  										 |
-	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	|  1,9cm -     360º						 |
-	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	|    x	 - (rot * 4,5º)        			 |
+	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	|  1,9cm -     360Âº						 |
+	  	  	  	  	  	  	  	  	  	  	  	  	  	  	  	|    x	 - (rot * 4,5Âº)        			 |
 																|							            */
-	  if (debounce(0,htim2.Instance->CNT))						//HOUVE ALTERAÇÃO DE ESTADO?
+	  if (debounce(0,htim2.Instance->CNT))						//HOUVE ALTERAÃ‡ÃƒO DE ESTADO?
 	  {
 		  rot++;
 	  }
@@ -173,13 +173,13 @@ int main(void)
 	  {
 		  HAL_TIM_OC_Start(&htim3, TIM_CHANNEL_1);				//LIGA PISCA ESQUERDO
 		  HAL_TIM_OC_Stop(&htim3, TIM_CHANNEL_2);				//DESLIGA PISCA DIREITO
-		  sprintf(dir, "Left ");								//PRINTA A DIREÇÃO NO DISPLAY
+		  sprintf(dir, "Left ");								//PRINTA A DIREÃ‡ÃƒO NO DISPLAY
 	  }
 	  if(direcao == 0)											//SE ENCODER GIROU PARA A DIREITA
 	  {
 		  HAL_TIM_OC_Start(&htim3, TIM_CHANNEL_2);				//LIGA PISCA DIREITO
 		  HAL_TIM_OC_Stop(&htim3, TIM_CHANNEL_1);				//DESLIGA PISCA ESQUERDO
-		  sprintf(dir, "Right");								//PRINTA A DIREÇÃO NO DISPLAY
+		  sprintf(dir, "Right");								//PRINTA A DIREÃ‡ÃƒO NO DISPLAY
 	  }
 
 	  //PRINTANDO DEMAIS VALORES NO DISPLAY
@@ -257,17 +257,17 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)				//DETECTOU ALGO NA S�?IDA ECHO DO SENSOR
+void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)				//DETECTOU ALGO NA SÃ?IDA ECHO DO SENSOR
 {
-	borda[tmed] = HAL_TIM_ReadCapturedValue(&htim8, TIM_CHANNEL_2);		//BORDA[0] = PRIMEIRA DETECÇÃO (SUBIDA)
-																		//BORDA[1] = SEGUNDA DETECÇÃO  (QUEDA)
-	if(tmed >= 1)														//É A SEGUNDA ALTERAÇÃO DE ESTADO?
+	borda[tmed] = HAL_TIM_ReadCapturedValue(&htim8, TIM_CHANNEL_2);		//BORDA[0] = PRIMEIRA DETECÃ‡ÃƒO (SUBIDA)
+																		//BORDA[1] = SEGUNDA DETECÃ‡ÃƒO  (QUEDA)
+	if(tmed >= 1)														//Ã‰ A SEGUNDA ALTERAÃ‡ÃƒO DE ESTADO?
 	{
 		periodo = (borda[1] - borda[0]);								//PRIMEIRO INSTANTE MENOS SEGUNDO INSTANTE
-		re = (periodo / 58)- 0.5;										//Disponível em -> https://www.robocore.net/sensor-robo/sensor-de-distancia-ultrassonico-hc-sr04
-		tmed = 0;														//RETORNA O VETOR BORDA PARA O IN�?CIO
+		re = (periodo / 58)- 0.5;										//DisponÃ­vel em -> https://www.robocore.net/sensor-robo/sensor-de-distancia-ultrassonico-hc-sr04
+		tmed = 0;														//RETORNA O VETOR BORDA PARA O INÃ?CIO
 	}else{																//PRIMEIRA LEITURA?
-		tmed++;															//AVANÇA O "SLOT" DO VETOR BORDA
+		tmed++;															//AVANÃ‡A O "SLOT" DO VETOR BORDA
 	}
 }
 /* USER CODE END 4 */
