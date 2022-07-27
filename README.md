@@ -1,6 +1,6 @@
 # Mini Display Automotivo
 
-Mais detalhes no arquivo main.c dentro da pasta zipada
+O arquivo main.c upado é apenas para visualização, ele já esta dentro da pasta zipada.
 
 O projeto busca simular algumas funções de um carro e exibir em um display Nokia 5110 informações oriundas dessas funções.
 
